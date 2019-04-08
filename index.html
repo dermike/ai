@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Installera Python</h2>
+					<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>
+				</section>
+				<section>
+					<h2>Installera TensorFlow</h2>
+					<code>pip3 install tensorflow</code>
+				</section>
+				<section>
+					<h2>Installera textgenrnn</h2>
+					<code>pip3 install textgenrnn</code>
+				</section>
+				<section>
+					<h2>Välj en datakälla</h2>
+					<p>och spara i en ny mapp</p>
+					<p><a href="kibkise_eng.txt">kibkise_eng.txt</a></p>
+					<p><a href="kib_twitter.txt">kib_twitter.txt</a></p>
+				</section>
+				<section>
+					<h2>Träna neuralt nätverk</h2>
+					<p>Lägg till följande fil: <code>train.py</code> i mappen</p>
+					<code>
+						<pre>
+								from textgenrnn import textgenrnn
+								t = textgenrnn()
+								t.train_from_file('din_fil.txt', num_epochs=10)
+						</pre>
+					</code>
+					<p><small>Ändra <code>num_epochs</code> till antal "varv" du vill träna.</small></p>
+				</section>
+				<section>
+					<h2>Träna... vänta</h2>
+					<code>python3 train.py</code>
+					<p><small>Har du hört din dators fläkt låta så här mycket förut?</small></p>
+				</section>
+				<section>
+					<h2>Låt neurala nätverket göra jobbet</h2>
+					<p>Skapa filen <code>create.py</code></p>
+					<code>
+						<pre>
+								from textgenrnn import textgenrnn
+								t = textgenrnn('textgenrnn_weights.hdf5')
+								t.generate(20, temperature=0.5)
+						</pre>
+					</code>
+					<p>Välj <code>temperature</code>. 0 = tråkigt, 0.5 = mellan, 1.0 = helt galet</p>
+				</section>
+				<section>
+					<h2>Läs och skratta... eller gråt.</h2>
+					<code>python3 create.py</code>
+				</section>
+				<section>
+					<h2>Testa ett prefix</h2>
+					<p>Ändra i <code>create.py</code></p>
+					<code>
+						<pre>
+								t.generate(20, temperature=0.5, prefix='KIB is ')
+						</pre>
+					</code>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
