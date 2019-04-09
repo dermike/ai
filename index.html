@@ -12,6 +12,15 @@
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
+		<style>
+		  section div {
+				text-align: left;
+				font-family: monospace;
+				background-color: #e1e1e1;
+				padding: 1rem;
+				font-size: 1.5rem;
+			}
+		</style>
 
 	</head>
 	<body>
@@ -40,31 +49,27 @@
 				<section>
 					<h2>Träna neuralt nätverk</h2>
 					<p>Lägg till följande fil: <code>train.py</code> i mappen</p>
-					<code>
-						<pre>
-								from textgenrnn import textgenrnn
-								t = textgenrnn()
-								t.train_from_file('din_fil.txt', num_epochs=10)
-						</pre>
-					</code>
+						<div>
+from textgenrnn import textgenrnn<br>
+t = textgenrnn()<br>
+t.train_from_file('din_fil.txt', num_epochs=10)
+						</div>
 					<p><small>Ändra <code>num_epochs</code> till antal "varv" du vill träna.</small></p>
 				</section>
 				<section>
 					<h2>Träna... vänta</h2>
-					<code>python3 train.py</code>
+					<div>python3 train.py</div>
 					<p><small>Har du hört din dators fläkt låta så här mycket förut?</small></p>
 				</section>
 				<section>
 					<h2>Låt neurala nätverket göra jobbet</h2>
 					<p>Skapa filen <code>create.py</code></p>
-					<code>
-						<pre>
-								from textgenrnn import textgenrnn
-								t = textgenrnn('textgenrnn_weights.hdf5')
-								t.generate(20, temperature=0.5)
-						</pre>
-					</code>
-					<p>Välj <code>temperature</code>. 0 = tråkigt, 0.5 = mellan, 1.0 = helt galet</p>
+					<div>
+from textgenrnn import textgenrnn<br>
+t = textgenrnn('textgenrnn_weights.hdf5')<br>
+t.generate(20, temperature=0.5)
+					</div>
+					<p><small>Välj <code>temperature</code>. 0 = tråkigt, 0.5 = mellan, 1.0 = helt galet</small></p>
 				</section>
 				<section>
 					<h2>Läs och skratta... eller gråt.</h2>
@@ -74,11 +79,9 @@
 					<h2>Testa ett prefix</h2>
 					<h4>..eller skruva upp temperaturen</h4>
 					<p>Ändra i <code>create.py</code></p>
-					<code>
-						<pre>
-								t.generate(20, temperature=1.0, prefix='KIB is ')
-						</pre>
-					</code>
+					<div>
+t.generate(20, temperature=1.0, prefix='KIB is ')
+					</div>
 				</section>
 			</div>
 		</div>
